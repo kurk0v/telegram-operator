@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using WTelegram;
 using System.IO;
 using System.Drawing;
+using System.Windows.Media.Imaging;
 
 namespace TelegramOperator
 {
@@ -14,7 +15,7 @@ namespace TelegramOperator
 		public string api_id { get; set; }
 		public string phone { get; set; }		
 		public string username { get; set; }
-        public Image photo { get; set; }
+        public BitmapSource photo { get; set; }
         
         public async Task<string> DoLogin(string loginInfo, Client _client)
         {

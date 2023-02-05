@@ -6,6 +6,9 @@ using System.Windows.Input;
 using System.Data;
 using System.IO;
 
+using System.Drawing;
+using System.Threading.Tasks;
+
 namespace TelegramOperator.Pages
 {
     /// <summary>
@@ -17,7 +20,7 @@ namespace TelegramOperator.Pages
         public Account()
         {
             InitializeComponent();
-            membersDataGrid.ItemsSource = Postgres.ReadingData();           
+            membersDataGrid.ItemsSource = Postgres.ReadingData();
 
         }
 
@@ -46,7 +49,7 @@ namespace TelegramOperator.Pages
 
 
             string fullname = Convert.ToString(_client.User.last_name) + " " + Convert.ToString(_client.User.first_name);
-            Postgres.RecordConection(4, textbox_hash.Text, Convert.ToInt32(textbox_api.Text), 
+            Postgres.RecordConection(textbox_hash.Text, Convert.ToInt32(textbox_api.Text), 
             textbox_number.Text, Convert.ToString(_client.User), fullname, await telegram.ImageProfile(_client));
 
             membersDataGrid.ItemsSource = Postgres.ReadingData();
@@ -56,12 +59,16 @@ namespace TelegramOperator.Pages
             textbox_password.Text = textbox_sms.Text = textbox_number.Text = textbox_hash.Text = textbox_api.Text = String.Empty;
         }
 
+        
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
             membersDataGrid.ItemsSource = Postgres.ReadingData();
 
         }
+
+
+
 
 
         private void SortingDataGrid(object sender, KeyEventArgs e)
@@ -70,7 +77,6 @@ namespace TelegramOperator.Pages
             membersDataGrid.ItemsSource = filtered;
 
         }
-
 
         
     }

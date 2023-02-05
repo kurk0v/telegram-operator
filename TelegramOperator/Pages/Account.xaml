@@ -65,7 +65,13 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Height="20" Width="20" Source="{Binding photo}" />
+                                    <Border Width="30" Height="30" CornerRadius="50" Margin="0 0 10 0">
+                                        <Ellipse Height="30" Width="30">
+                                            <Ellipse.Fill>
+                                                <ImageBrush Stretch="UniformToFill"  ImageSource="{Binding photo}" />
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                    </Border>
                                     <TextBlock Text="{Binding member}" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </DataTemplate>
