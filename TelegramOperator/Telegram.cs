@@ -22,7 +22,7 @@ namespace TelegramOperator
             string logs;
             if (what != null)
             {
-                return logs = ($"A {what} is required...");
+                return logs = ($"A {what} is required..");
             }
             return logs = ($"We are now connected as {_client.User}");
         }
