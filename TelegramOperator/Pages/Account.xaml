@@ -1,0 +1,94 @@
+﻿<Page x:Class="TelegramOperator.Pages.Account"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1030"
+      Title="Account">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height ="300"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="460"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column ="0" BorderBrush="#f9f9f9" BorderThickness="3" CornerRadius="20"  Margin="20,70,20,0" Height="240" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,235,0,7" Grid.ColumnSpan="2"/>
+        </Border>
+
+
+
+        <Canvas Margin="0,0,0,110">
+            <TextBox x:Name="textbox_hash" Style="{StaticResource MinimumTextBox}" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="380" Grid.ColumnSpan="2" Canvas.Left="42" Canvas.Top="130" />
+            <TextBox x:Name="textbox_api" Style="{StaticResource MinimumTextBox}" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="67" Canvas.Left="42" Canvas.Top="194"/>
+            <TextBox x:Name="textbox_password" Style="{StaticResource MinimumTextBox}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="142" Canvas.Left="129" Canvas.Top="194"/>
+            <TextBox x:Name="textbox_number" Style="{StaticResource MinimumTextBox}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="129"  Canvas.Left="293" Canvas.Top="194"/>
+            <TextBox x:Name="textbox_sms" IsEnabled="False" Style="{StaticResource MinimumTextBox}" Width="100" Canvas.Left="42" Canvas.Top="259" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button x:Name="button_add" Style="{StaticResource BorderButton}" Content="Add account" Click="Add_Click" Width="160" HorizontalAlignment="Center" Canvas.Left="262" Canvas.Top="259" VerticalAlignment="Top"/>
+            <Button x:Name="button_sms" Style="{StaticResource PouringButton}" Content="Send" IsEnabled="False" Click="Sms_Click" Height="30" HorizontalAlignment="Left" Canvas.Left="147" Canvas.Top="260" VerticalAlignment="Center" Width="55"/>
+        </Canvas>
+
+        <Canvas Margin="0,0,0,337">
+            <Label  FontSize = "25" FontWeight ="DemiBold"  Content="Account" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,20,0,0"/>
+            <Label Content="api__hash" Style="{StaticResource LabelAccount}" Width="82"  Canvas.Left="42" Canvas.Top="102" />
+            <Label Content="api__id" Style="{StaticResource LabelAccount}" Canvas.Left="42" Canvas.Top="165" />
+            <Label Content="number"  Style="{StaticResource LabelAccount}" Canvas.Left="294" Canvas.Top="168" />
+            <Label Content="password" Style="{StaticResource LabelAccount}" Canvas.Left="130" Canvas.Top="168" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <Label Content="sms" Style="{StaticResource LabelAccount}" Canvas.Left="42" Canvas.Top="232" HorizontalAlignment="Center" VerticalAlignment="Top" />
+            <Label Content="Add new" FontWeight="DemiBold" FontSize = "15" Canvas.Left="190" Canvas.Top="74" />
+
+        </Canvas>
+        <Grid Grid.Column ="1" Grid.Row="0" Grid.RowSpan="2" >
+            <TextBox x:Name="search" Style="{StaticResource RoundTextBox}" VerticalAlignment="Top" Margin="10,20,210,0" KeyUp="SortingDataGrid"/>
+            <Button Content="Delete" Style="{StaticResource PouringButton}" Margin="250,20,0,0" VerticalAlignment="Top" />
+            <Button Content="Edit" Style="{StaticResource PouringButton}" Margin="450,20,0,0" VerticalAlignment="Top" Click="Button_Click"  />
+            <DataGrid  Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" d:ItemsSource="{d:SampleData ItemCount=5}"   Margin="10,70,10,10" x:Name="membersDataGrid">
+
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn CanUserReorder="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
+                        <DataGridCheckBoxColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
+                            </DataTemplate>
+                        </DataGridCheckBoxColumn.HeaderTemplate>
+                    </DataGridCheckBoxColumn>
+
+                    <DataGridTextColumn Header="id" IsReadOnly="True" CanUserReorder="False" Width="60" Binding="{Binding id}"/>
+
+                    <DataGridTemplateColumn Header="member" IsReadOnly="True" Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Height="20" Width="20" Source="{Binding photo}" />
+                                    <TextBlock Text="{Binding member}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTextColumn Header="username" IsReadOnly="True"  Width="auto" Binding="{Binding username}"/>
+                    <DataGridTextColumn Header="phone" IsReadOnly="True"  Width="auto" Binding="{Binding phone}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+
+        </Grid>
+
+        <Grid Grid.Row="1" >
+            <Border Background="#efe6fe" BorderThickness="3" CornerRadius="10" Grid.Row="1" Margin="20,10,20,10"/>
+            <ListBox x:Name="listBox" HorizontalAlignment="Center" BorderBrush="#ffff" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,40,0,20" Width="400"/>
+            <Label Content="Logs" FontWeight="DemiBold" FontSize = "15" HorizontalContentAlignment="Center" Margin="100,10,100,256"/>
+
+        </Grid>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="360,304,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="100"/>
+
+
+    </Grid>
+</Page>
