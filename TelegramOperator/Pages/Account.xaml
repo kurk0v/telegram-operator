@@ -46,7 +46,7 @@
         </Canvas>
         <Grid Grid.Column ="1" Grid.Row="0" Grid.RowSpan="2" >
             <TextBox x:Name="search" Style="{StaticResource RoundTextBox}" VerticalAlignment="Top" Margin="10,20,210,0" KeyUp="SortingDataGrid"/>
-            <Button Content="Delete" Style="{StaticResource PouringButton}" Margin="250,20,0,0" VerticalAlignment="Top" />
+            <Button Content="Delete" Style="{StaticResource PouringButton}" Margin="250,20,0,0" VerticalAlignment="Top" Click="Button_Click_1" />
             <Button Content="Edit" Style="{StaticResource PouringButton}" Margin="450,20,0,0" VerticalAlignment="Top" Click="Button_Click"  />
             <DataGrid  Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" d:ItemsSource="{d:SampleData ItemCount=5}"   Margin="10,70,10,10" x:Name="membersDataGrid">
 

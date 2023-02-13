@@ -7,10 +7,10 @@ using Npgsql;
 
 namespace TelegramOperator
 {
-    
+
     internal class Postgres
     {
-        
+
         public static NpgsqlConnection GetConnection()
         {
             string password = "";
@@ -38,6 +38,21 @@ namespace TelegramOperator
 
 
             }
+        }
+
+        public static void DeleteData(int iid)
+        {
+            using (NpgsqlConnection connect = GetConnection())
+            {
+                connect.Open();
+                using (var command = new NpgsqlCommand("DELETE FROM public.account WHERE id = @n", connect))
+                {
+                    command.Parameters.AddWithValue("n", iid);
+                    command.ExecuteNonQuery();
+                }
+
+            }
+
         }
 
 
