@@ -51,7 +51,7 @@
             <DataGrid  Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" d:ItemsSource="{d:SampleData ItemCount=5}"   Margin="10,70,10,10" x:Name="membersDataGrid">
 
                 <DataGrid.Columns>
-                    <DataGridCheckBoxColumn CanUserReorder="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
+                    <DataGridCheckBoxColumn Binding="{Binding IsChecked}" CanUserReorder="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
                         <DataGridCheckBoxColumn.HeaderTemplate>
                             <DataTemplate>
                                 <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
@@ -94,6 +94,7 @@
 
         </Grid>
         <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="360,304,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="100"/>
+
 
 
     </Grid>

@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Data;
 using System.IO;
-
+using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
 
@@ -16,6 +16,7 @@ namespace TelegramOperator.Pages
     /// </summary>
     public partial class Account : Page
     {
+
         private WTelegram.Client _client;
         public Account()
         {
@@ -32,8 +33,7 @@ namespace TelegramOperator.Pages
             textbox_sms.IsEnabled = button_sms.IsEnabled = true;
             button_add.IsEnabled = false;
 
-            listBox.Items.Add($"Connecting & login into Telegram servers...");
-
+            listBox.Items.Add($"Connecting & login into Telegram servers...");            
             _client = new WTelegram.Client(int.Parse(textbox_api.Text), textbox_hash.Text);
             await telegram.DoLogin(textbox_number.Text, _client);
         }
@@ -57,6 +57,7 @@ namespace TelegramOperator.Pages
             textbox_sms.IsEnabled = button_sms.IsEnabled = false;
             button_add.IsEnabled = true;
             textbox_password.Text = textbox_sms.Text = textbox_number.Text = textbox_hash.Text = textbox_api.Text = String.Empty;
+
         }
 
         
@@ -66,9 +67,6 @@ namespace TelegramOperator.Pages
             membersDataGrid.ItemsSource = Postgres.ReadingData();
 
         }
-
-
-
 
 
         private void SortingDataGrid(object sender, KeyEventArgs e)
