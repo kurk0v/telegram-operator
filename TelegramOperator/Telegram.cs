@@ -10,7 +10,7 @@ namespace TelegramOperator
 {
 	public class Telegram
     {
-    public string id { get; set; }
+        public string id { get; set; }
 		public string member { get; set; }
 		public string api_hash { get; set; }
 		public string api_id { get; set; }
@@ -44,10 +44,10 @@ namespace TelegramOperator
             
         }
 
-        public async Task SendMessage(Client _client, string username, string message)
+        public async Task SendMessage(Client client, string username, string message)
         {
-            var resolved = await _client.Contacts_ResolveUsername(username); 
-            await _client.SendMessageAsync(resolved, message);
+            var resolved = await client.Contacts_ResolveUsername(username); 
+            await client.SendMessageAsync(resolved, message);
         }
         
 

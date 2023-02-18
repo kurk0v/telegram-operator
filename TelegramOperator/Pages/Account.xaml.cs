@@ -4,10 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Data;
-using System.IO;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Threading.Tasks;
+
+
 
 namespace TelegramOperator.Pages
 {
@@ -22,7 +20,6 @@ namespace TelegramOperator.Pages
         {
             InitializeComponent();
             membersDataGrid.ItemsSource = Postgres.ReadingData();
-
         }
 
 
@@ -32,13 +29,12 @@ namespace TelegramOperator.Pages
         {
             textbox_sms.IsEnabled = button_sms.IsEnabled = true;
             button_add.IsEnabled = false;
-
-            listBox.Items.Add($"Connecting & login into Telegram servers...");            
-            _client = new WTelegram.Client(int.Parse(textbox_api.Text), textbox_hash.Text);
+            string sessionPathname = $"{textbox_api.Text}session";
+            listBox.Items.Add($"Connecting & login into Telegram servers...");
+            _client = new WTelegram.Client(int.Parse(textbox_api.Text), textbox_hash.Text,  sessionPathname);
             await telegram.DoLogin(textbox_number.Text, _client);
         }
 
-        
 
         private async void Sms_Click(object sender, RoutedEventArgs e)
         {
@@ -46,6 +42,7 @@ namespace TelegramOperator.Pages
             listBox.Items.Add(logs);
             logs = await telegram.DoLogin(textbox_password.Text, _client);
             listBox.Items.Add(logs);
+
 
 
             string fullname = Convert.ToString(_client.User.last_name) + " " + Convert.ToString(_client.User.first_name);
@@ -65,7 +62,7 @@ namespace TelegramOperator.Pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             membersDataGrid.ItemsSource = Postgres.ReadingData();
-
+      
         }
 
 
@@ -81,5 +78,8 @@ namespace TelegramOperator.Pages
             Postgres.DeleteData(4);
             membersDataGrid.ItemsSource = Postgres.ReadingData();
         }
+
+
+
     }
 }

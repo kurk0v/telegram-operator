@@ -93,6 +93,34 @@ namespace TelegramOperator
         }
 
 
+        public static List<string> ReadingDataString(string _id)
+        {
+            List<string> member = new List<string>();
+
+            using (NpgsqlConnection connect = GetConnection())
+            {
+                connect.Open();
+                using (var command = new NpgsqlCommand($"SELECT * FROM account WHERE id = {_id}", connect))
+                {
+                    var reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        member.Add(reader.GetInt32(0).ToString());
+                        member.Add(reader.GetString(1));
+                        member.Add(reader.GetInt32(2).ToString());
+                        member.Add(reader.GetString(3));
+
+                    }
+                    reader.Close();
+                    return member;
+
+
+                }
+
+            }
+
+        }
+
 
     }
 }
