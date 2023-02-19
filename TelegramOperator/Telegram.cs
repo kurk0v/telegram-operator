@@ -59,20 +59,28 @@ namespace TelegramOperator
             }
         }
 
-        public async Task SendMessage(Client _client, string username, string message, int delay)
+        public async Task SendMessage(Client _client, string username, string message, int delay, bool photo_check, string Filepath)
         {
             for (int i = 31; i <= 33; i++)
             {
                 await Task.Delay(delay);
                 _client = new WTelegram.Client(what => Config(what, i.ToString()));
                 var myself = await _client.LoginUserIfNeeded();
-
-                if (_client != null)
+                var resolved = await _client.Contacts_ResolveUsername(username);
+                if (photo_check == false)
                 {
-                    var resolved = await _client.Contacts_ResolveUsername(username);
+                    
                     await _client.SendMessageAsync(resolved, message);
                     _client.Dispose();
 
+                }
+
+                if (photo_check == true)
+                {
+
+                    var inputFile = await _client.UploadFileAsync(Filepath);
+                    await _client.SendMediaAsync(resolved, message, inputFile);
+                    _client.Dispose();
                 }
 
             }

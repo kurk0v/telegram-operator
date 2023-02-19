@@ -32,8 +32,8 @@ namespace TelegramOperator.Pages
 
         private async void SMS_Click(object sender, RoutedEventArgs e)
         {
-            await telegram.SendMessage(null, username.Text, message.Text, (int)Slider.Value);
-
+            bool photo_check = (bool)photocheck.IsChecked;
+            await telegram.SendMessage(null, username.Text, message.Text, (int)Slider.Value, photo_check, @"D:1.jpg");
         }
     }
 }
