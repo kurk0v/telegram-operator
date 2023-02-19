@@ -5,11 +5,44 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TelegramOperator.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="800" d:DesignWidth="1030"
       Title="Message">
 
     <Grid>
-        <Label  FontSize = "25" FontWeight ="DemiBold"  Content="Message" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,50,0,0"/>
-        <Button x:Name="SMS" Content="Button" HorizontalAlignment="Left" Margin="190,265,0,0" VerticalAlignment="Top" Click="SMS_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+
+            <RowDefinition Height ="*"></RowDefinition>
+            <RowDefinition Height ="400"></RowDefinition>
+
+        </Grid.RowDefinitions>
+
+
+
+        <Grid Grid.Row="1" Grid.Column ="0">
+
+            <DockPanel LastChildFill="False" HorizontalAlignment="Left" Width="1020" Margin="10,10,0,10">
+                <Label DockPanel.Dock="Top" Content="Timeout" FontWeight="DemiBold" FontSize = "15" Canvas.Left="190" Canvas.Top="74" Height="28"/>
+                <Slider DockPanel.Dock="Left" x:Name="Slider"  Maximum="10000" IsSnapToTickEnabled="True" TickPlacement="BottomRight" TickFrequency="1000"  Width="230" Height="25" />
+                <TextBox  Style="{StaticResource RoundTextBox}" Text="{Binding Value, ElementName=Slider, UpdateSourceTrigger=PropertyChanged}" Width="50" Height="25" />
+                <Label DockPanel.Dock="Left" Content="Send to multiple accounts" FontWeight="Medium"  FontSize = "15" Height="28" Width="188" Margin="10" FontStyle="Normal"/>
+                <CheckBox Style="{StaticResource ToggleButtonStyle}" DockPanel.Dock="Left" />
+                <TextBox x:Name="username" DockPanel.Dock="Left" Style="{StaticResource RoundTextBox}" Width="120" Margin="10" />
+                <TextBox x:Name="message" DockPanel.Dock="Left" Style="{StaticResource RoundTextBox}" Width="317" />
+
+            </DockPanel>
+            
+
+
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column ="0">
+
+        </Grid>
+
+        <Button x:Name="SMS" Style="{StaticResource PouringButton}" Content="Отправить"  VerticalAlignment="Top" Click="SMS_Click" />
+
     </Grid>
 </Page>

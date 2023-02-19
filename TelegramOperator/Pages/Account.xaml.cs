@@ -62,7 +62,8 @@ namespace TelegramOperator.Pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             membersDataGrid.ItemsSource = Postgres.ReadingData();
-      
+
+
         }
 
 
@@ -75,7 +76,7 @@ namespace TelegramOperator.Pages
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Postgres.DeleteData(4);
+            Postgres.DeleteData(34);
             membersDataGrid.ItemsSource = Postgres.ReadingData();
         }
 

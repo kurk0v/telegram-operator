@@ -109,11 +109,9 @@ namespace TelegramOperator
                         member.Add(reader.GetString(1));
                         member.Add(reader.GetInt32(2).ToString());
                         member.Add(reader.GetString(3));
-
                     }
                     reader.Close();
                     return member;
-
 
                 }
 

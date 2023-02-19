@@ -5,6 +5,7 @@ using System.IO;
 using System.Drawing;
 using System.Windows.Media.Imaging;
 using TL;
+using System.Collections.Generic;
 
 namespace TelegramOperator
 {
@@ -44,12 +45,39 @@ namespace TelegramOperator
             
         }
 
-        public async Task SendMessage(Client client, string username, string message)
+        static string Config(string what, string id)
         {
-            var resolved = await client.Contacts_ResolveUsername(username); 
-            await client.SendMessageAsync(resolved, message);
+            List<string> member = Postgres.ReadingDataString(id);
+
+            switch (what)
+            {
+                case "api_id": return member[2];
+                case "api_hash": return member[1];
+                case "phone_number": return member[3];
+                case "session_pathname": return $"{member[2]}session";
+                default: return null;
+            }
+        }
+
+        public async Task SendMessage(Client _client, string username, string message, int delay)
+        {
+            for (int i = 31; i <= 33; i++)
+            {
+                await Task.Delay(delay);
+                _client = new WTelegram.Client(what => Config(what, i.ToString()));
+                var myself = await _client.LoginUserIfNeeded();
+
+                if (_client != null)
+                {
+                    var resolved = await _client.Contacts_ResolveUsername(username);
+                    await _client.SendMessageAsync(resolved, message);
+                    _client.Dispose();
+
+                }
+
+            }
+
         }
         
-
     }
 }
