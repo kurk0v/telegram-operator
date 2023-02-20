@@ -59,31 +59,40 @@ namespace TelegramOperator
             }
         }
 
-        public async Task SendMessage(Client _client, string username, string message, int delay, bool photo_check, string Filepath)
+        public async Task SendMessage(Client _client, string username, string message,
+            int delay, bool photo_check, string path)
         {
-            for (int i = 31; i <= 33; i++)
+            if (username != "")
             {
-                await Task.Delay(delay);
-                _client = new WTelegram.Client(what => Config(what, i.ToString()));
-                var myself = await _client.LoginUserIfNeeded();
-                var resolved = await _client.Contacts_ResolveUsername(username);
-                if (photo_check == false)
+                if (path != "" || message != "")
                 {
-                    
-                    await _client.SendMessageAsync(resolved, message);
-                    _client.Dispose();
+                    for (int i = 31; i <= 33; i++)
+                    {
+                        await Task.Delay(delay);
+                        _client = new Client(what => Config(what, i.ToString()));
+                        var myself = await _client.LoginUserIfNeeded();
+                        var resolved = await _client.Contacts_ResolveUsername(username);
+                        if (photo_check == false)
+                        {
+
+                            await _client.SendMessageAsync(resolved, message);
+
+                        }
+
+                        if (photo_check == true & path != "")
+                        {
+
+                            var inputFile = await _client.UploadFileAsync(path);
+                            await _client.SendMediaAsync(resolved, message, inputFile);
+
+                        }
+                        _client.Dispose();
+
+                    }
 
                 }
-
-                if (photo_check == true)
-                {
-
-                    var inputFile = await _client.UploadFileAsync(Filepath);
-                    await _client.SendMediaAsync(resolved, message, inputFile);
-                    _client.Dispose();
-                }
-
             }
+            
 
         }
         

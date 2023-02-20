@@ -6,7 +6,6 @@ using System.Windows.Input;
 using System.Data;
 
 
-
 namespace TelegramOperator.Pages
 {
     /// <summary>
@@ -62,7 +61,6 @@ namespace TelegramOperator.Pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             membersDataGrid.ItemsSource = Postgres.ReadingData();
-
 
         }
 

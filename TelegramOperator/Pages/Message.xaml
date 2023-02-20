@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:TelegramOperator.Pages"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1030"
       Title="Message">
@@ -28,17 +28,20 @@
                 <Label DockPanel.Dock="Top" Content="Timeout" FontWeight="DemiBold" FontSize = "15" Canvas.Left="190" Canvas.Top="74" Height="28"/>
                 <Slider DockPanel.Dock="Left" x:Name="Slider"  Maximum="10000" IsSnapToTickEnabled="True" TickPlacement="BottomRight" TickFrequency="1000"  Width="230" Height="25" />
                 <TextBox  Style="{StaticResource RoundTextBox}" Text="{Binding Value, ElementName=Slider, UpdateSourceTrigger=PropertyChanged}" Width="50" Height="25" />
-                <Label DockPanel.Dock="Left" Content="Send to multiple accounts" FontWeight="Medium"  FontSize = "15" Height="28" Width="188" Margin="10" FontStyle="Normal"/>
+                <Label DockPanel.Dock="Left" Content="image" FontWeight="Medium"  FontSize = "15" Height="28" Width="50" Margin="10" FontStyle="Normal"/>
                 <CheckBox x:Name="photocheck" Style="{StaticResource ToggleButtonStyle}" DockPanel.Dock="Left" />
                 <TextBox x:Name="username" DockPanel.Dock="Left" Style="{StaticResource RoundTextBox}" Width="120" Margin="10" />
                 <TextBox x:Name="message" DockPanel.Dock="Left" Style="{StaticResource RoundTextBox}" Width="317" />
-
+                <Button x:Name="Home"  Style="{StaticResource MenuRoundButton}" Click="Home_Click">
+                    <fa:ImageAwesome Icon="Paperclip"  Style="{StaticResource MenuButtonIcon}"></fa:ImageAwesome>
+                </Button>
             </DockPanel>
 
 
 
         </Grid>
         <Grid Grid.Row="2" Grid.Column ="0">
+            <Image x:Name="imgPicture" HorizontalAlignment="Left" Height="348" Margin="588,19,0,0" VerticalAlignment="Top" Width="400"/>
 
         </Grid>
 
